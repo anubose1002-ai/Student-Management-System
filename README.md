@@ -20,4 +20,4 @@ A simple Python-based Student Management System for managing student records eff
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/student-management-system.git
+git clone https://github.com/anubose1002-ai/student-management-system.git
