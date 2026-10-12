@@ -1,37 +1,37 @@
-
 # Student Management System
 
-A Python-based application for managing student records efficiently.
+A desktop application built with Python, Tkinter, and SQLite to manage student records.
 
-[Getting Started](setup.md) · [Features](features.md) · [Screenshots](screenshots.md) · [Documentation](documentation.md)
+[Setup Guide](setup.md) · [Features](features.md) · [Screenshots](screenshots.md) · [Technical Documentation](documentation.md) · [Source Code](https://github.com/anubose1002-ai/Student-Management-System)
 
 ---
 
 ## About the Project
 
-The Student Management System is designed to simplify the process of maintaining student information through a straightforward interface.
+The Student Management System provides a graphical interface for creating, viewing, searching, updating, and deleting student records. Records are stored locally in an SQLite database.
 
 ## Key Features
 
-- Add new student records
-- View existing student records
-- Search for students
-- Update student information
-- Delete student records
+- Add student records with a unique roll number
+- View and search records
+- Update and delete selected records
+- Store records in a local SQLite database
+- Validate required fields
 
 ## Technology
 
-- **Language:** Python
-- **Project type:** Student Management System
+- Python 3
+- Tkinter GUI
+- SQLite database
 
-## Quick Start
+## Run the Application
 
-Visit the [Setup Guide](setup.md) for installation and execution instructions.
+This is a desktop application, not a browser application. Follow the [Setup Guide](setup.md) to run it on a computer with Python installed.
 
-## Project Documentation
+## Project Pages
 
-- [README](README.md)
 - [Setup Guide](setup.md)
 - [Features](features.md)
 - [Screenshots](screenshots.md)
 - [Technical Documentation](documentation.md)
+- [README](README.md)
