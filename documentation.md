@@ -4,7 +4,7 @@
 
 - `index.html`: semantic page structure, navigation, dashboard, student table, and form dialog
 - `assets/styles.css`: responsive design, visual effects, components, and reduced-motion styling
-- `assets/scene.js`: Three.js scene setup, lighting, geometry, particles, resize handling, and pointer response
+- `assets/scene.js`: Three.js scene setup, lighting, geometry, particles, resize handling, pointer response, and scroll-responsive 3D storytelling
 - `assets/app.js`: demo records, search, CRUD actions, validation, and localStorage persistence
 
 ## Browser data model

@@ -118,3 +118,41 @@ if (canvas && host) {
     canvas.hidden = true;
   }
 }
+
+
+// Scroll-controlled 3D storytelling: the camera and scene evolve with page progress.
+const storySection = document.querySelector("#story");
+const storyObject = document.querySelector("#storyObject");
+const storySteps = [...document.querySelectorAll(".story-step")];
+let storyProgress = 0;
+let storyTarget = 0;
+let storyFrame = 0;
+
+if (storySection) {
+  const updateStory = () => {
+    const rect = storySection.getBoundingClientRect();
+    const travel = Math.max(1, storySection.offsetHeight - window.innerHeight);
+    storyTarget = Math.max(0, Math.min(1, -rect.top / travel));
+    const step = Math.min(2, Math.floor(storyTarget * 3.001));
+    storySteps.forEach((el, index) => el.classList.toggle("active", index === step));
+    if (storyObject) {
+      const rotateY = -24 + storyTarget * 100;
+      const rotateX = 8 + Math.sin(storyTarget * Math.PI * 2) * 12;
+      const scale = 1 + Math.sin(storyTarget * Math.PI) * 0.18;
+      const lift = Math.sin(storyTarget * Math.PI * 2) * 24;
+      storyObject.style.transform = `translateY(${lift}px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`;
+    }
+  };
+  window.addEventListener("scroll", updateStory, { passive: true });
+  window.addEventListener("resize", updateStory);
+  updateStory();
+}
+
+// Also let the Three.js hero respond subtly to scroll depth.
+window.addEventListener("scroll", () => {
+  const canvas = document.querySelector("#hero3d");
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+  canvas.style.transform = `translateY(${(progress - 0.5) * -18}px)`;
+}, { passive: true });

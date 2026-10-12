@@ -6,6 +6,7 @@ A responsive GitHub Pages project showcase with a Three.js 3D hero scene and an 
 
 - Responsive dark visual design with restrained teal accents
 - Interactive Three.js 3D scene, particles, lighting, and pointer response
+- Scroll-driven storytelling section where a 3D student-record card transforms as the visitor scrolls
 - Dashboard summary metrics
 - Add, search, edit, and delete demo student records
 - Browser local storage for demo records
