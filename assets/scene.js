@@ -120,39 +120,65 @@ if (canvas && host) {
 }
 
 
-// Scroll-controlled 3D storytelling: the camera and scene evolve with page progress.
+// Scroll-controlled cinematic story. Uses rAF-throttled measurements and smooth interpolation.
 const storySection = document.querySelector("#story");
 const storyObject = document.querySelector("#storyObject");
 const storySteps = [...document.querySelectorAll(".story-step")];
+const header = document.querySelector(".site-header");
+const storyScene = document.querySelector(".story-scene");
 let storyProgress = 0;
 let storyTarget = 0;
-let storyFrame = 0;
+let scrollTicking = false;
+const clamp01 = (value) => Math.max(0, Math.min(1, value));
 
-if (storySection) {
-  const updateStory = () => {
+function measureScroll() {
+  if (header) header.classList.toggle("scrolled", window.scrollY > 24);
+  if (storySection) {
     const rect = storySection.getBoundingClientRect();
     const travel = Math.max(1, storySection.offsetHeight - window.innerHeight);
-    storyTarget = Math.max(0, Math.min(1, -rect.top / travel));
-    const step = Math.min(2, Math.floor(storyTarget * 3.001));
-    storySteps.forEach((el, index) => el.classList.toggle("active", index === step));
-    if (storyObject) {
-      const rotateY = -24 + storyTarget * 100;
-      const rotateX = 8 + Math.sin(storyTarget * Math.PI * 2) * 12;
-      const scale = 1 + Math.sin(storyTarget * Math.PI) * 0.18;
-      const lift = Math.sin(storyTarget * Math.PI * 2) * 24;
-      storyObject.style.transform = `translateY(${lift}px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`;
-    }
-  };
-  window.addEventListener("scroll", updateStory, { passive: true });
-  window.addEventListener("resize", updateStory);
-  updateStory();
+    storyTarget = clamp01(-rect.top / travel);
+  }
+  scrollTicking = false;
 }
+function requestScrollMeasure() {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(measureScroll);
+  }
+}
+window.addEventListener("scroll", requestScrollMeasure, { passive: true });
+window.addEventListener("resize", requestScrollMeasure);
+measureScroll();
 
-// Also let the Three.js hero respond subtly to scroll depth.
-window.addEventListener("scroll", () => {
+function animateStory() {
+  requestAnimationFrame(animateStory);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  storyProgress += (storyTarget - storyProgress) * (reduceMotion ? 1 : 0.075);
+  const step = Math.min(2, Math.floor(storyProgress * 3));
+  storySteps.forEach((element, index) => {
+    if (element.classList.contains("active") !== (index === step)) {
+      element.classList.toggle("active", index === step);
+    }
+  });
+  if (storyObject) {
+    const p = storyProgress;
+    const rotateY = -28 + p * 118;
+    const rotateX = 8 + Math.sin(p * Math.PI * 2) * 13;
+    const scale = 0.88 + Math.sin(p * Math.PI) * 0.23;
+    const lift = Math.sin(p * Math.PI * 2) * 28;
+    const drift = (p - 0.5) * 42;
+    storyObject.style.transform = `translate(calc(-50% + ${drift}px), calc(-50% + ${lift}px)) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`;
+    storyObject.style.filter = `brightness(${0.88 + Math.sin(p * Math.PI) * 0.22})`;
+  }
+  if (storyScene && !reduceMotion) {
+    storyScene.style.setProperty("--story-depth", `${storyProgress * 100}%`);
+    storyScene.style.transform = `translate3d(${Math.sin(storyProgress * Math.PI) * -10}px, ${(storyProgress - .5) * -16}px, 0)`;
+  }
   const canvas = document.querySelector("#hero3d");
-  if (!canvas) return;
-  const rect = canvas.getBoundingClientRect();
-  const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-  canvas.style.transform = `translateY(${(progress - 0.5) * -18}px)`;
-}, { passive: true });
+  if (canvas && !reduceMotion) {
+    const rect = canvas.getBoundingClientRect();
+    const visible = clamp01((window.innerHeight - rect.top) / (window.innerHeight + rect.height));
+    canvas.style.transform = `translate3d(0, ${(visible - 0.5) * -22}px, 0) scale(${1 + Math.sin(visible * Math.PI) * 0.012})`;
+  }
+}
+requestAnimationFrame(animateStory);

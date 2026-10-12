@@ -37,3 +37,17 @@ The separate `main.py` file is a Python/Tkinter desktop application. GitHub Page
 ## External assets
 
 The 3D module loads Three.js from jsDelivr, and the font stylesheet loads Google Fonts. Those visual enhancements require an internet connection. If the CDN is unavailable, the page content and student demo should remain usable, but the 3D scene may not render.
+
+
+## Cinematic 3D upgrade
+
+This build adds an additive `assets/cinematic-upgrade.css` layer and a smoother scroll-driven story animation while preserving the STUDENTOS identity, existing student demo (`assets/app.js`), documentation links, and Python/Tkinter desktop source. Three.js and Google Fonts are loaded from CDNs, so those enhancements require an internet connection.
+
+### Deploy
+1. Download and extract this ZIP.
+2. Upload the **contents** of the extracted folder to the repository root on the `main` branch, keeping the `assets/` folder intact.
+3. Allow GitHub Pages to finish deploying, then hard-refresh the live site with `Ctrl+Shift+R`.
+4. Test the story by scrolling through it, then test add/search/edit/delete in the student directory. Browser-demo records remain in that browser's local storage only.
+
+### Motion/accessibility
+The upgrade respects `prefers-reduced-motion`, adapts the story composition for mobile, and keeps the original HTML-based scene fallback if WebGL is unavailable.
