@@ -1,35 +1,24 @@
 # Technical Documentation
 
-## Architecture
+## Website architecture
 
-The application is a local Python desktop program. The user interface is built with Tkinter and the data is stored in SQLite.
+- `index.html`: semantic page structure, navigation, dashboard, student table, and form dialog
+- `assets/styles.css`: responsive design, visual effects, components, and reduced-motion styling
+- `assets/scene.js`: Three.js scene setup, lighting, geometry, particles, resize handling, and pointer response
+- `assets/app.js`: demo records, search, CRUD actions, validation, and localStorage persistence
 
-## Source file
+## Browser data model
 
-- `main.py`: creates the interface, validates input, runs CRUD operations, and refreshes the student table.
+Each demo record contains an identifier, name, roll number, course, email, and status. A unique roll number is enforced by the client-side demo logic.
 
-## Database
+## Storage and security
 
-The `students` table contains:
+Browser data is local to one browser profile and is not a central database. The demo has no login or access control and is not suitable for real student data.
 
-| Field | Purpose |
-|---|---|
-| `id` | Automatically generated primary key |
-| `roll_no` | Unique student roll number |
-| `name` | Student name |
-| `course` | Course or programme |
-| `email` | Optional email address |
-| `phone` | Optional phone number |
+## Desktop application
 
-## CRUD operations
+`main.py` uses Tkinter for the desktop interface and SQLite for local persistence. It is a separate program and does not communicate with the website.
 
-- **Create:** Add Student
-- **Read:** table view and search
-- **Update:** Update Selected
-- **Delete:** Delete Selected, with confirmation
+## Hosting
 
-## Limitations
-
-- This is a local desktop application, not a multi-user web application.
-- The database is stored on the computer where the application runs.
-- GitHub Pages hosts documentation only and does not execute Python code.
+GitHub Pages serves static files. The website requires no build command. Three.js is imported from jsDelivr using an import map; Google Fonts is loaded from Google Fonts. A CDN outage may prevent those external visual resources from loading.

@@ -1,35 +1,18 @@
 # Setup Guide
 
-## Prerequisites
+## View the website
 
-- Python 3 installed on your computer
-- Tkinter available in your Python installation
+Open the GitHub Pages URL in a modern browser. The 3D scene loads Three.js from a CDN, so an internet connection is required for the 3D effects and remote fonts.
 
-## Download
+## Run the Python desktop application
 
-Download the repository as a ZIP from GitHub and extract it, or clone it:
+1. Install Python 3 for Windows from https://www.python.org/downloads/windows/.
+2. During installation, enable the option to add Python to PATH if offered.
+3. Open PowerShell in the folder containing `main.py`.
+4. Run `python main.py` or `py main.py`, depending on your Python installation.
 
-```bash
-git clone https://github.com/anubose1002-ai/Student-Management-System.git
-cd Student-Management-System
-```
+The Python application uses Tkinter and SQLite. GitHub Pages does not run the desktop app.
 
-## Run on Windows
+## Browser demo data
 
-Open PowerShell or Command Prompt in the project folder and run:
-
-```powershell
-py main.py
-```
-
-If `py` is unavailable, try:
-
-```bash
-python main.py
-```
-
-The program creates `students.db` automatically when it first starts.
-
-## Data storage
-
-Keep `students.db` in the project folder to retain your records. Do not upload real student personal information to a public GitHub repository.
+The website's demo data is stored in localStorage in the current browser. It is not shared with other visitors. Use sample data only; do not enter real student personal information.

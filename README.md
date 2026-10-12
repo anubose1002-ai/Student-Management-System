@@ -1,52 +1,38 @@
-# Student Management System
+# Student Management System — 3D Website
 
-A desktop application built with Python, Tkinter, and SQLite for managing student records.
+A responsive GitHub Pages project showcase with a Three.js 3D hero scene and an interactive browser-only student directory demo.
 
-## Features
+## Website features
 
-- Add student records
-- View all saved students
-- Search by roll number, name, course, email, or phone
-- Update selected student records
-- Delete records with confirmation
-- Store records locally in an SQLite database
-- Validate required fields and prevent duplicate roll numbers
+- Responsive dark visual design with restrained teal accents
+- Interactive Three.js 3D scene, particles, lighting, and pointer response
+- Dashboard summary metrics
+- Add, search, edit, and delete demo student records
+- Browser local storage for demo records
+- Links to project documentation
 
-## Technology
+## Important architecture note
 
-- Python 3
-- Tkinter (usually included with standard Python installations)
-- SQLite (included with Python)
+This website is a static frontend. The browser demo stores its sample records in the current browser's `localStorage`; it is not connected to a server and records do not sync between visitors. Do not enter real student personal information.
 
-## Run the application
+The separate `main.py` file is a Python/Tkinter desktop application. GitHub Pages cannot execute Python or Tkinter.
 
-1. Install Python 3 from https://www.python.org/downloads/.
-2. Download or clone this repository.
-3. Open a terminal in the project folder.
-4. Run:
+## Deploy to GitHub Pages
 
-   ```bash
-   python main.py
-   ```
+1. Upload the repository files to the root of the `main` branch.
+2. In repository **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`.
+3. Wait for the Pages deployment workflow to succeed.
+4. Open the published Pages URL.
 
-   On some Windows installations, use `py main.py`.
+## Files
 
-The application creates `students.db` in the current working directory the first time it runs. Keep this file to retain your records.
+- `index.html` — custom homepage and browser demo
+- `assets/styles.css` — layout, theme, and responsive styling
+- `assets/app.js` — student demo interactions and browser storage
+- `assets/scene.js` — Three.js scene
+- `index.md`, `setup.md`, `features.md`, `screenshots.md`, `documentation.md` — project documentation
+- `main.py` — Python desktop application source
 
-## Important note about GitHub Pages
+## External assets
 
-GitHub Pages hosts the project's documentation only. It cannot run this Python desktop application or its SQLite database in a visitor's browser. To use the program, download the repository and run it locally with Python.
-
-## Project files
-
-- `main.py` — application source code
-- `requirements.txt` — external Python dependencies (none required)
-- `index.md` — GitHub Pages homepage
-- `setup.md` — setup guide
-- `features.md` — feature overview
-- `screenshots.md` — screenshot page
-- `documentation.md` — technical overview
-
-## Data and privacy
-
-Student records are stored locally in `students.db`. Use sample data for demonstrations and do not commit real student personal information to a public repository.
+The 3D module loads Three.js from jsDelivr, and the font stylesheet loads Google Fonts. Those visual enhancements require an internet connection. If the CDN is unavailable, the page content and student demo should remain usable, but the 3D scene may not render.

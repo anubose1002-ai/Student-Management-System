@@ -1,19 +1,19 @@
-# Application Screenshots
+# Screenshots
 
-Add genuine screenshots of the running Python application to this page after launching `main.py`.
+Capture screenshots of the website and the Python desktop application after testing them.
 
 Suggested screenshots:
 
-1. Main application window
-2. Adding a student record
-3. Searching student records
-4. Updating a record
-5. Confirmation before deleting a record
+1. Website hero and 3D scene
+2. Dashboard metrics
+3. Browser demo directory with sample records
+4. Add/edit student dialog
+5. Python desktop app running locally
 
-To display an image stored in the repository, upload it (for example, to an `assets` folder) and use Markdown such as:
+To add a screenshot, upload an image into `assets/` and reference it like this:
 
 ```markdown
-![Main application window](assets/main-window.png)
+![Website homepage](assets/homepage.png)
 ```
 
-Do not use placeholder images as if they were real application screenshots.
+Only use screenshots of the actual running project.

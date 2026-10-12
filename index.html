@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Student Management System — an interactive project showcase and browser-based demo.">
+  <title>Student Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="assets/scene.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Student Management System home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>STUDENT<span class="brand-light">OS</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a class="nav-link active" href="#overview">Overview</a>
+      <a class="nav-link" href="#dashboard">Dashboard</a>
+      <a class="nav-link" href="#students">Students</a>
+      <a class="nav-link" href="#docs">Documentation</a>
+    </nav>
+    <a class="header-cta" href="#students">Explore demo <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="overview">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> STUDENT MANAGEMENT SYSTEM <span class="eyebrow-line"></span> PROJECT SHOWCASE</div>
+        <h1>Education admin,<br><span>reimagined.</span></h1>
+        <p class="hero-description">A student management project built around clarity, structure, and a better way to explore student records. Meet the interface in an interactive browser demo.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#dashboard">Explore dashboard <span>↘</span></a>
+          <a class="button button-ghost" href="https://github.com/anubose1002-ai/Student-Management-System" target="_blank" rel="noreferrer">View source on GitHub <span>↗</span></a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-icon">✦</div>
+          <div><strong>Built for learning</strong><span>Python desktop app + web showcase</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Animated 3D abstract education-themed visual">
+        <div class="visual-grid"></div>
+        <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
+        <canvas id="hero3d"></canvas>
+        <div class="float-label label-top"><span class="label-symbol">◈</span><span><b>Student records</b><small>Organized in one place</small></span></div>
+        <div class="float-label label-bottom"><span class="mini-bars"><i></i><i></i><i></i><i></i></span><span><b>Simple workflows</b><small>Manage with clarity</small></span></div>
+        <div class="visual-caption"><span>FIG. 01</span> DIGITAL CAMPUS / 3D STUDY</div>
+      </div>
+      <div class="hero-bottom-line"><span>DESIGNED FOR BETTER ORGANIZATION</span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
+
+    <section class="metrics section-wrap" id="dashboard">
+      <div class="section-heading">
+        <div><div class="eyebrow">01 / OVERVIEW</div><h2>A clearer view of the system.</h2></div>
+        <p>Explore the sample dashboard below. Its numbers are demo data, stored only in this browser.</p>
+      </div>
+      <div class="metric-grid">
+        <article class="metric-card"><div class="metric-top"><span>Total students</span><span class="metric-icon">↗</span></div><strong id="totalMetric">04</strong><div class="metric-foot"><span class="status-dot"></span> Demo records</div></article>
+        <article class="metric-card"><div class="metric-top"><span>Courses represented</span><span class="metric-icon">▦</span></div><strong id="courseMetric">03</strong><div class="metric-foot">Across sample data</div></article>
+        <article class="metric-card"><div class="metric-top"><span>Records added here</span><span class="metric-icon">＋</span></div><strong id="addedMetric">00</strong><div class="metric-foot">This browser only</div></article>
+        <article class="metric-card metric-note"><div class="note-orb"></div><div class="eyebrow">DEMO MODE</div><h3>Try it yourself.</h3><p>Add, search, edit, and remove sample student records below.</p><a href="#students">Open student table ↘</a></article>
+      </div>
+    </section>
+
+    <section class="students-section section-wrap" id="students">
+      <div class="section-heading">
+        <div><div class="eyebrow">02 / STUDENT DIRECTORY</div><h2>Student records.</h2></div>
+        <span class="demo-pill"><span class="status-dot"></span> Interactive browser demo</span>
+      </div>
+      <div class="directory-panel">
+        <div class="directory-toolbar">
+          <div><h3>Directory</h3><p>Sample data · saved locally in this browser</p></div>
+          <div class="toolbar-actions"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search name, roll no. or course" aria-label="Search students"></label><button class="button button-primary button-small" id="addStudentBtn">＋ Add student</button></div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>STUDENT</th><th>ROLL NUMBER</th><th>COURSE</th><th>EMAIL</th><th>STATUS</th><th>ACTIONS</th></tr></thead>
+            <tbody id="studentRows"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" hidden><span>⌕</span><strong>No students found</strong><p>Try a different search or add a student record.</p></div>
+        </div>
+        <div class="directory-footer"><span id="recordCount">Showing 4 records</span><span><i class="status-dot"></i> Demo only — not connected to a server</span></div>
+      </div>
+      <p class="privacy-note">Privacy note: demo records are stored in your browser's local storage. They are not sent to a server or shared with other visitors.</p>
+    </section>
+
+    <section class="features-section section-wrap" id="features">
+      <div class="section-heading">
+        <div><div class="eyebrow">03 / CAPABILITIES</div><h2>Designed around the essentials.</h2></div>
+        <p>A focused set of actions for learning core student-record workflows.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon">＋</div><h3>Create records</h3><p>Add a student with a roll number, name, course, and email.</p><span>01 / CREATE</span></article>
+        <article class="feature-card"><div class="feature-icon">⌕</div><h3>Find quickly</h3><p>Search the directory by name, roll number, or course.</p><span>02 / SEARCH</span></article>
+        <article class="feature-card"><div class="feature-icon">↗</div><h3>Update details</h3><p>Edit a selected record and see the directory update instantly.</p><span>03 / UPDATE</span></article>
+        <article class="feature-card"><div class="feature-icon">⌫</div><h3>Remove safely</h3><p>Delete a demo record only after confirming the action.</p><span>04 / DELETE</span></article>
+      </div>
+    </section>
+
+    <section class="docs-section section-wrap" id="docs">
+      <div class="docs-banner">
+        <div class="docs-glow"></div><div class="eyebrow">04 / PROJECT RESOURCES</div>
+        <h2>Go beyond the interface.</h2>
+        <p>Explore the source repository and project documentation. The Python/Tkinter desktop app is separate from this static website.</p>
+        <div class="docs-links">
+          <a href="README.md">README <span>↗</span></a>
+          <a href="setup.md">Setup guide <span>↗</span></a>
+          <a href="features.md">Features <span>↗</span></a>
+          <a href="screenshots.md">Screenshots <span>↗</span></a>
+          <a href="documentation.md">Technical docs <span>↗</span></a>
+          <a href="https://github.com/anubose1002-ai/Student-Management-System" target="_blank" rel="noreferrer">GitHub repository <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-wrap"><a class="brand" href="#overview"><span class="brand-mark"><span></span><span></span><span></span></span><span>STUDENT<span class="brand-light">OS</span></span></a><span>Student Management System · Academic project showcase</span><a href="#overview">Back to top ↑</a></footer>
+
+  <dialog id="studentDialog" class="student-dialog">
+    <form id="studentForm" method="dialog">
+      <div class="dialog-head"><div><div class="eyebrow">STUDENT DIRECTORY</div><h2 id="dialogTitle">Add student</h2></div><button class="dialog-close" type="button" id="closeDialog" aria-label="Close">×</button></div>
+      <input type="hidden" id="studentId">
+      <label>Full name <input id="studentName" required maxlength="80" placeholder="e.g. Aanya Sharma"></label>
+      <label>Roll number <input id="studentRoll" required maxlength="30" placeholder="e.g. BCA-025"></label>
+      <label>Course <input id="studentCourse" required maxlength="80" placeholder="e.g. BCA"></label>
+      <label>Email (optional) <input id="studentEmail" type="email" maxlength="120" placeholder="student@example.com"></label>
+      <div class="dialog-actions"><button type="button" class="button button-ghost" id="cancelDialog">Cancel</button><button class="button button-primary" type="submit">Save student</button></div>
+      <p class="form-hint">Demo only. Data stays in this browser and is not connected to a real student database.</p>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

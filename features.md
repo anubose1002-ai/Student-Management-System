@@ -1,19 +1,25 @@
 # Features
 
-## Add Students
-Create a student record with a unique roll number, name, and course. Email and phone are optional.
+## Website
 
-## View Students
-See saved records in a table.
+- Responsive layout for desktop and mobile
+- Three.js 3D hero scene with pointer-responsive motion
+- Animated interface details and reduced-motion support
+- Overview metrics and project resource links
 
-## Search
-Search by roll number, name, course, email, or phone.
+## Browser demo
 
-## Update
-Select a student row, edit the fields, and choose **Update Selected**.
+- View sample records
+- Add records
+- Search by name, roll number, course, or email
+- Edit existing demo records
+- Delete records after confirmation
+- Store demo changes in this browser's localStorage
 
-## Delete
-Select a student row and choose **Delete Selected**. The application asks for confirmation.
+## Desktop application
 
-## Local Database
-Records are saved in an SQLite database named `students.db` on the computer running the application.
+The separate Python/Tkinter app in `main.py` supports adding, viewing, searching, updating, and deleting student records stored in a local SQLite database.
+
+## Limitations
+
+The website demo is not connected to the desktop app and does not provide a shared online database or authentication.
