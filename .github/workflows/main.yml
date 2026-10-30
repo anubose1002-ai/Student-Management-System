@@ -1,0 +1,24 @@
+
+name: Student Management System - CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  basic-workflow:
+    name: Run Basic Workflow
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Workflow
+        run: echo "GitHub Actions is working successfully!"
+
+      - name: Display Repository Information
+        run: |
+          echo "Repository: Student Management System"
+          echo "Workflow executed successfully."
